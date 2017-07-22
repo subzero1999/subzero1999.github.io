@@ -95,11 +95,12 @@
         <center>
         <div class="modal-content">
             <h4>Approximated track model</h4>
+            <p>According to IAAF standards.</p>
             <canvas id="canvas" width="0" height="0" style="background-color: #fff; color: white;">You need Javascript for this page to work.</canvas>    
         </div>
         </center>
         <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Close</a>
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
         </div>
     </div>
 
@@ -123,18 +124,18 @@
                     <form class="user_input">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="length" type="text" class="validate">
-                                <label for="length">Length</label>
+                                <input id="length" type="number" class="validate" min="1" max="1000">
+                                <label for="length">Height of the ground (metres)</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="breadth" type="text" class="validate">
-                                <label for="breadth">Breadth</label>
+                                <input id="breadth" type="number" class="validate" min="1" max="1000">
+                                <label for="breadth">Width of the ground (metres)</label>
                             </div>
                         </div>
                     </form>
-                    <a id="submit"class="waves-effect waves-light btn"><i class="material-icons right">send</i>Submit</a>
+                    <a id="submit"class="waves-effect waves-light btn">Calculate</a>
                 </div>
             </div>
         </div>

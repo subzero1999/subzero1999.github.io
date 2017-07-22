@@ -99,8 +99,10 @@ const clickHandler = () => {
   const width = document.getElementById('breadth').value;
 
   // Return if values are empty or negative
-  if (!height || !width || height<0 || width<0)
-    return;
+  if (!height || !width || height<0 || width<0){
+    alert('Enter the values properly.');
+    return false;
+  }
 
   const canvas = document.getElementById('canvas');
   canvas.setAttribute("width", width);
