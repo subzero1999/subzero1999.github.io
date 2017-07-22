@@ -1,251 +1,155 @@
 <!DOCTYPE html>
 <html>
-<!DOCTYPE html>
-<html>
 
 <head>
-  <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-  <meta name="viewport" content="width=device-width; initial-scale = 1.0;
-    maximum-scale=1.0; user-scalable=no" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-  <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Luckiest+Guy" rel="stylesheet">
-
-  <title>Test</title>
-
-  <style>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0,
+    maximum-scale=1.0, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <script src="track.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Luckiest+Guy" rel="stylesheet">
+    <title>Test</title>
+    <style>
     .container {
-      background-color: #263238;
-      height: 500px;
-      width: 600px;
-      margin-top: 100px;
-      color: white;
+        background-color: #263238;
+        height: 500px;
+        width: 600px;
+        margin-top: 100px;
+        color: white;
     }
 
     .user_input {
-      margin-top: 50px;
+        margin-top: 50px;
     }
 
     body {
-      background-color: #546e7a;
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-      background-image: url("track.jpg");
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
-      height: 100%;
-      width: 100%;
-      opacity: 0.8;
+        background-color: #546e7a;
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        background-image: url("track.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+    }
+
+    .low-opacity {
+        opacity: 0.8;
     }
 
     main {
-      flex: 1 0 auto;
+        flex: 1 0 auto;
     }
 
 
     .btn {
-      margin-top: 20px;
-      background-color: #827717;
+        margin-top: 20px;
+        background-color: #827717;
     }
 
     .input-field label {
-      color: #dce775;
+        color: #dce775;
     }
 
     .input-field input[type=text]:focus+label {
-      color: #dce775;
+        color: #dce775;
     }
 
     .input-field input[type=text]:focus {
-      border-bottom: 1px solid #dce775;
-      box-shadow: 0 1px 0 0 #dce775;
+        border-bottom: 1px solid #dce775;
+        box-shadow: 0 1px 0 0 #dce775;
     }
 
 
     .nav-wrapper {
-      background-color: #263238;
+        background-color: #263238;
     }
 
     footer.page-footer {
-      background-color: #263238;
+        background-color: #263238;
     }
-  </style>
+    </style>
 </head>
 
 <body>
-
-  <!-- NAVBAR   -->
-  <nav>
-    <div class="nav-wrapper  white-text">
-      <a href="#" class="brand-logo center" style="font-family:Fjalla One">Track Measurement</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#" class="waves-effect waves-light">Home</a></li>
-        <li><a class="waves-effect waves-light   modal-trigger" href="#modal1">Rules and Regulation</a></li>
-        <li><a class="waves-effect waves-light   modal-trigger" href="#modal1">Contacts</a></li>
-      </ul>
-    </div>
-  </nav>
-  <!-- NAVBAR -->
-
-  <!-- MODAL -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
-    </div>
-  </div>
-  <!-- MODAL -->
-
-  <!-- MAIN CONTENT -->
-  <main>
-    <div class="container  ">
-      <div class="row">
-        <div class="col s12 m8 push-m2 center-align">
-          <h3 style="margin-top:40px;font-family: 'Luckiest Guy', cursive;">Measurements</h3>
-          <form class="user_input">
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="lenght" type="text" class="validate">
-                <label for="length">Length</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="breadth" type="text" class="validate">
-                <label for="breadth">Breadth</label>
-              </div>
-            </div>
-          </form>
-          <a class="waves-effect waves-light btn"><i class="material-icons right">send</i>Submit</a>
+    <!-- NAVBAR   -->
+    <nav>
+        <div class="nav-wrapper white-text low-opacity">
+            <a href="#" class="brand-logo center" style="font-family:Fjalla One">Track Measurement</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#" class="waves-effect waves-light">Home</a></li>
+                <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Rules and Regulation</a></li>
+                <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Contacts</a></li>
+            </ul>
         </div>
-      </div>
+    </nav>
+    <!-- NAVBAR -->
+    <!-- MODAL -->
+    <div id="canvasModal" class="modal">
+        <center>
+        <div class="modal-content">
+            <h4>Approximated track model</h4>
+            <canvas id="canvas" width="0" height="0" style="background-color: #fff; color: white;">You need Javascript for this page to work.</canvas>    
+        </div>
+        </center>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Close</a>
+        </div>
     </div>
-  </main>
 
-  <!-- MAIN CONTENT -->
 
-  <footer class="page-footer">
-    © 2014 Copyright Text
-  </footer>
-
+    <div id="modal1" class="modal low-opacity">
+        <div class="modal-content">
+            <h4>Modal Header</h4>
+            <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Close</a>
+        </div>
+    </div>
+    <!-- MODAL -->
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="container  low-opacity">
+            <div class="row">
+                <div class="col s12 m8 push-m2 center-align">
+                    <h3 style="margin-top:40px;font-family: 'Luckiest Guy', cursive;">Measurements</h3>
+                    <form class="user_input">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="length" type="text" class="validate">
+                                <label for="length">Length</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="breadth" type="text" class="validate">
+                                <label for="breadth">Breadth</label>
+                            </div>
+                        </div>
+                    </form>
+                    <a id="submit"class="waves-effect waves-light btn"><i class="material-icons right">send</i>Submit</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- MAIN CONTENT -->
+    <footer class="page-footer low-opacity">
+        © 2014 Copyright Text
+    </footer>
 </body>
-
 <script>
-  $(document).ready(function() {
+$(document).ready(function() {
     // the "href" attribute of .modal-trigger must specify the modal ID that   wants to be triggered
     $('.modal-trigger').leanModal();
-  });
+    $("#submit").on("click", clickHandler);
+});
 </script>
-
-</html>
-
-<head>
-  <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-  <meta name="viewport" content="width=device-width; initial-scale = 1.0;
-    maximum-scale=1.0; user-scalable=no" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-  <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Luckiest+Guy" rel="stylesheet">
-
-  <title>Test</title>
-
-  <style>
-  .container{
-    background-color:#263238;
-    height:500px;
-    width:600px;
-    margin-top:100px;
-    color:white;
-
-  }
-
-.user_input{
-  margin-top:50px;
-
-}
-
-  body{
-    background-color:#546e7a;
-  }
-
-  .btn{
-    margin-top:20px;
-    background-color: #827717;
-  }
-
-  .input-field label{
-    color:#dce775;
-  }
-  .input-field input[type=text]:focus + label {
-    color:#dce775;
-  }
-
-  .input-field input[type=text]:focus {
-     border-bottom: 1px solid #dce775;
-     box-shadow: 0 1px 0 0 #dce775;
-   }
-
-
-   .nav-wrapper{
-     background-color:#263238  ;
-   }
-
-  </style>
-</head>
-
-<body>
-  <nav>
-    <div class="nav-wrapper  white-text">
-      <a href="#" class="brand-logo center" style="font-family:Fjalla One">Track Measurement</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Rules and Regulation</a></li>
-        <li><a href="#">Contacts</a></li>
-      </ul>
-    </div>
-  </nav>
-
-
-  <div class="container  ">
-    <div class="row">
-      <div class="col s12 m8 push-m2 center-align">
-        <h3 style="margin-top:40px;font-family: 'Luckiest Guy', cursive;">Measurements</h3>
-        <form class="user_input">
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="lenght" type="text" class="validate">
-              <label for="length">Length</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="breadth" type="text" class="validate">
-              <label for="breadth">Breadth</label>
-            </div>
-          </div>
-
-        </form>
-        <a class="waves-effect waves-light btn"><i class="material-icons right">send</i>Submit</a>
-
-      </div>
-    </div>
-  </div>
-
-</body>
 
 </html>
