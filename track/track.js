@@ -108,17 +108,22 @@ const clickHandler = () => {
   canvas.setAttribute("width", width);
   canvas.setAttribute("height", height);
   check(width, height);
-  $("#canvasModal").openModal();
+}
+
+const throwError = () => {
+  alert("A track can't be constructed with the given dimensions.");
 }
 
 const check = (l, h) => {
   // (w, h) -> length and height of the ground as entered by the user
-  const userArea = l*h;
+  let hh = radius_400 + ( 9.76 * 1.5 * 4);
+  hh = hh * 2;
+  let ll = (length_400 + ( 9.76 * .5 * 4)) * 2 + hh;
 
-  if (l > length_400 && h > radius_400)
+  if (l > ll && h > hh){
     draw400(l, h);
-  else if (userArea > area_200)
-    draw200();
+    $("#canvasModal").openModal();
+  }
   else
     throwError();
 }
