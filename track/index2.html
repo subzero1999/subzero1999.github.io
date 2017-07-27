@@ -17,12 +17,21 @@
   <style>
     .nav-wrapper {
       background-color: #263238;
-      overflow-x: hidden;
+      overflow-x: scroll;
     }
 
-    .tabs {
+    .tabs .tab a {
       background-color: #263238;
-      color: #26a69a;
+      color: #e2e2e2;
+      transition: color 500ms ease-in;
+    }
+
+    .tabs .tab a:hover {
+      color: #26a19a;
+    }
+
+    .tabs .indicator {
+      background-color: #26a69a;
     }
 
     .body {
@@ -54,9 +63,6 @@
       color: black;
     }
 
-    main {
-      flex: 1 0 auto;
-    }
     footer.page-footer {
       background-color: #263238;
     }

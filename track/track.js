@@ -1,4 +1,4 @@
-// author - digi0ps
+// Author - digi0ps
 
 // Track constants in metres
 const line_width = 1.22,
@@ -123,6 +123,19 @@ const check = (l, h) => {
   if (l > ll && h > hh){
     draw400(l, h);
     $("#canvasModal").openModal();
+    const download = document.getElementById('download');
+    download.addEventListener("click", function() {
+      const canvas = document.getElementById('canvas');
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, 'PNG', 0, 50);
+      //Text
+      pdf.setFontType('bold');
+      pdf.text(105, 20, "Track Measurement", null, null, 'center');
+      pdf.setFontType('normal');
+      pdf.text(105, 20, "Approximated diagram of the track using the latest IAAF standards", null, null, 'center');
+      pdf.save("track.pdf");
+    }, false);
   }
   else
     throwError();
