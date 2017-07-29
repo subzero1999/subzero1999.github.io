@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width; initial-scale = 1.0;
+      maximum-scale=1.0; user-scalable=no" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+  <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Luckiest+Guy" rel="stylesheet">
+  <title></title>
+  <style>
+    .nav-wrapper {
+      background-color: #263238;
+      overflow-x: scroll;
+    }
+
+    .tabs .tab a {
+      background-color: #263238;
+      color: #e2e2e2;
+      transition: color 500ms ease-in;
+    }
+
+    .tabs .tab a:hover {
+      color: #26a19a;
+    }
+
+    .tabs .indicator {
+      background-color: #26a69a;
+    }
+
+    .body {
+      margin: 0px;
+      background-color: red;
+    }
+
+    body {
+      background-color: #546e7a;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    .topic {
+      margin: 0px;
+      padding-top: 20px;
+      color: #26a69a;
+    }
+
+    .container-fluid {
+      /*background-color: #263238;*/
+      margin-top: 100px;
+      color: black;
+    }
+
+    .input-con {
+      margin-top: 100px;
+      padding-bottom: 25px;
+      background-color: #fcfcfc;
+    }
+  
+    .results {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    .result {
+      margin: 10px;
+    }
+    .result div {
+      font-size: 20px;
+      padding: 5px;
+      padding-top: 10px;
+      border: 2px dotted #b9b2b2;
+      border-radius: 10%;
+      min-width: 100px;
+      width: auto;
+      height: 50px;
+      background-color: #fff;
+      margin: 0px auto;
+    }
+    footer.page-footer {
+      background-color: #263238;
+      color: white;
+      text-align: center;
+      font-family: Verdana;
+      padding: 20px;
+      font-size: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR   -->
+
+  <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <h5 class="center-align topic">Track & Field Layout</h5>
+      <!-- <h5 class="center-align topic">Construction & Layout of track & field</h6> -->
+      <ul class="side-nav" id="mobile-demo">
+        <li class="tab"><a href="#test1">Home</a></li>
+        <li class="tab"><a href="#test2">About us</a></li>
+        <li class="tab"><a href="#test3">Theory of Calculation</a></li>
+        <li class="tab"><a href="#test4">Educational videos</a></li>
+        <li class="tab"><a href="#test1">Rules and Regulations</a></li>
+        <li class="tab"><a href="#test1">Links</a></li>
+        <li class="tab"><a href="#test1">Feedback</a></li>
+        <li class="tab"><a href="#test1">Contact</a></li>
+      </ul>
+    </div>
+    <div class="nav-content hide-on-med-and-down">
+      <ul class="tabs tabs-transparent" style="color:#26a69a">
+        <li class="tab"><a href="#test1">Home</a></li>
+        <li class="tab"><a href="#test2">About us</a></li>
+        <li class="tab"><a href="#test3">Theory of Calculation</a></li>
+        <li class="tab"><a href="#test4">Educational videos</a></li>
+        <li class="tab"><a href="#test1">Rules and Regulations</a></li>
+        <li class="tab"><a href="#test1">Links</a></li>
+        <li class="tab"><a href="#test1">Feedback</a></li>
+        <li class="tab"><a href="#test1">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  
+  <main>
+    <div class="container input-con">
+      <div class="row">
+        <div class="col s12 m8 push-m2 center-align">
+          <h3>Measurements</h3>
+          <form class="user_input">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="name" type="text" class="validate">
+                <label for="name">Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="university" type="text" class="validate">
+                <label for="university">University/College</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="length" type="number" class="validate">
+                <label for="length">Length</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="width" type="number" step="0.01" min="1.20" max="1.25" class="validate">
+                <label for="width">Width of the lane</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="extra" type="number" min="0" max="10" class="validate">
+                <label for="extra">Extra Space (0-10)</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="center-align">
+               <p>
+                  <input class="with-gap" name="type" type="radio" id="stan" checked />
+                  <label for="test5">Standard</label>
+                  <input class="with-gap" name="type" type="radio" id="nonstan" />
+                  <label for="test5">Non Standard</label>
+              </p>
+              </div>
+            </div>
+
+          </form>
+          <a class="waves-effect waves-light btn" id="calculate">Calculate</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="results center-align">
+          <div class="result">
+            <p>Total Length</p>
+            <div id="tl"></div>
+          </div>
+          <div class="result">
+            <p>Total Width</p>
+            <div id="tw"></div>
+          </div>
+          <div class="result">
+            <p>Total Area</p>
+            <div id="ta"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<!-- FOOTER -->
+
+
+  <footer class="page-footer">
+    © Placeholder for copyright text.
+  </footer>
+
+</body>
+<script type="text/javascript" src='../track2.js'></script>
+<script>
+  $(".button-collapse").sideNav();
+  $(".results").hide();
+</script>
+</html>

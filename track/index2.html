@@ -44,7 +44,6 @@
       display: flex;
       min-height: 100vh;
       flex-direction: column;
-      opacity: 0.8;
     }
 
     main {
@@ -65,6 +64,11 @@
 
     footer.page-footer {
       background-color: #263238;
+      color: white;
+      text-align: center;
+      font-family: Verdana;
+      padding: 20px;
+      font-size: 10px;
     }
   </style>
 </head>
@@ -108,89 +112,6 @@
 
 
   <!-- MODAL -->
-
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <main>
-        <div class="container  ">
-          <div class="row">
-            <div class="col s12 m8 push-m2 center-align">
-              <h3 style="margin-top:40px;font-family: 'Luckiest Guy', cursive;">Measurements</h3>
-              <form class="user_input">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="lenght" type="text" class="validate">
-                    <label for="length">Length</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="breadth" type="text" class="validate">
-                    <label for="breadth">Breadth</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="breadth" type="text" class="validate">
-                    <label for="breadth">Breadth</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="breadth" type="text" class="validate">
-                    <label for="breadth">Breadth</label>
-                  </div>
-                </div>
-              </form>
-              <a class="waves-effect waves-light btn"><i class="material-icons right">send</i>Submit</a>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-
-  </div>
-
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <main>
-        <div class="container  ">
-          <div class="row">
-            <div class="col s12 m8 push-m2 center-align">
-              <h3 style="margin-top:40px;font-family: 'Luckiest Guy', cursive;">Measurements</h3>
-              <form class="user_input">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="lenght" type="text" class="validate">
-                    <label for="length">Length</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="breadth" type="text" class="validate">
-                    <label for="breadth">Breadth</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="breadth" type="text" class="validate">
-                    <label for="breadth">Breadth</label>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input id="breadth" type="text" class="validate">
-                    <label for="breadth">Breadth</label>
-                  </div>
-                </div>
-              </form>
-              <a class="waves-effect waves-light btn"><i class="material-icons right">send</i>Submit</a>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-  </div>
   <div id="modal3" class="modal">
     <div class="modal-content">
       <h4>Javline</h4>
@@ -320,7 +241,7 @@
           <div class="card">
             <div class="card-image">
 
-              <a class="waves-effect waves-light  modal-trigger" href="#modal2"><img src="track.jpg" class="responsive-img"></a>
+              <a class="waves-effect waves-light" href="400/index.html"><img src="track.jpg" class="responsive-img"></a>
             </div>
             <div class="card-content">
               <h5>400m Running</h5>
@@ -469,7 +390,7 @@
 
 
   <footer class="page-footer">
-    © 2014 Copyright Text
+    © Placeholder for copyright text.
   </footer>
 
 </body>
@@ -482,5 +403,4 @@
     $('.modal-trigger').leanModal();
   });
 </script>
-
 </html>
