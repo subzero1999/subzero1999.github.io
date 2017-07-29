@@ -1,0 +1,112 @@
+.nav-wrapper {
+  background-color: #263238;
+  overflow-x: scroll;
+}
+
+.tabs .tab a {
+  background-color: #263238;
+  color: #e2e2e2;
+  transition: color 500ms ease-in;
+}
+
+.tabs .tab a:hover {
+  color: #26a19a;
+}
+
+.tabs .indicator {
+  background-color: #26a69a;
+}
+
+.body {
+  margin: 0px;
+  background-color: red;
+}
+
+body {
+  background-color: #546e7a;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.topic {
+  margin: 0px;
+  padding-top: 20px;
+  color: #26a69a;
+}
+
+.container-fluid {
+  /*background-color: #263238;*/
+  margin-top: 100px;
+  color: black;
+}
+
+.con {
+  margin-top: 70px;
+  padding-bottom: 15px;
+  background-color: #fcfcfc;
+}
+
+.results {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.result {
+  margin: 10px;
+}
+
+.separator {
+  width: 50px;
+  height: 10px;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+
+.result div {
+  font-size: 20px;
+  padding: 5px;
+  padding-top: 10px;
+  border: 2px dotted #b9b2b2;
+  border-radius: 10%;
+  min-width: 100px;
+  width: auto;
+  height: 50px;
+  background-color: #fff;
+  margin: 0px auto;
+}
+
+#tracklink, #measurelink {
+  font-size: 18px;
+  color: #2BBBAD;
+  font-family: Arial;
+  margin-top: 20px;
+  padding-top: 10px;
+  opacity: 1;
+  transition: opacity 250ms ease-in;
+}
+
+.trackcon {
+  margin-top: 20px;
+}
+
+#tracklink:hover, #measurelink:hover {
+  opacity: 0.8;
+}
+
+footer.page-footer {
+  background-color: #263238;
+  color: white;
+  text-align: center;
+  font-family: Verdana;
+  padding: 20px;
+  font-size: 10px;
+}

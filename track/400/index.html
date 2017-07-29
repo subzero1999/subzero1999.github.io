@@ -4,102 +4,13 @@
 <head>
   <meta charset="utf-8">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-  <meta name="viewport" content="width=device-width; initial-scale = 1.0;
-      maximum-scale=1.0; user-scalable=no" />
+  <meta name="viewport" content="width=device-width,initial-scale = 1.0,maximum-scale=1.0,user-scalable=no" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="400.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-  <link href="css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Luckiest+Guy" rel="stylesheet">
-  <title></title>
-  <style>
-    .nav-wrapper {
-      background-color: #263238;
-      overflow-x: scroll;
-    }
-
-    .tabs .tab a {
-      background-color: #263238;
-      color: #e2e2e2;
-      transition: color 500ms ease-in;
-    }
-
-    .tabs .tab a:hover {
-      color: #26a19a;
-    }
-
-    .tabs .indicator {
-      background-color: #26a69a;
-    }
-
-    .body {
-      margin: 0px;
-      background-color: red;
-    }
-
-    body {
-      background-color: #546e7a;
-      display: flex;
-      min-height: 100vh;
-      flex-direction: column;
-    }
-
-    main {
-      flex: 1 0 auto;
-    }
-
-    .topic {
-      margin: 0px;
-      padding-top: 20px;
-      color: #26a69a;
-    }
-
-    .container-fluid {
-      /*background-color: #263238;*/
-      margin-top: 100px;
-      color: black;
-    }
-
-    .input-con {
-      margin-top: 100px;
-      padding-bottom: 25px;
-      background-color: #fcfcfc;
-    }
-  
-    .results {
-      margin-top: 20px;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-
-    .result {
-      margin: 10px;
-    }
-    .result div {
-      font-size: 20px;
-      padding: 5px;
-      padding-top: 10px;
-      border: 2px dotted #b9b2b2;
-      border-radius: 10%;
-      min-width: 100px;
-      width: auto;
-      height: 50px;
-      background-color: #fff;
-      margin: 0px auto;
-    }
-    footer.page-footer {
-      background-color: #263238;
-      color: white;
-      text-align: center;
-      font-family: Verdana;
-      padding: 20px;
-      font-size: 10px;
-    }
-  </style>
+  <title>400m Track Measurement</title>
 </head>
 
 <body>
@@ -139,7 +50,7 @@
   <!-- CONTENT -->
   
   <main>
-    <div class="container input-con">
+    <div class="container con" id="input">
       <div class="row">
         <div class="col s12 m8 push-m2 center-align">
           <h3>Measurements</h3>
@@ -174,22 +85,21 @@
                 <label for="extra">Extra Space (0-10)</label>
               </div>
             </div>
-            <div class="row">
-              <div class="center-align">
                <p>
+                <div class="center">
                   <input class="with-gap" name="type" type="radio" id="stan" checked />
-                  <label for="test5">Standard</label>
+                  <label for="stan">Standard</label>
+                  <div class="separator"></div>
                   <input class="with-gap" name="type" type="radio" id="nonstan" />
-                  <label for="test5">Non Standard</label>
+                  <label for="nonstan">Non Standard</label>
+                </div>
               </p>
-              </div>
-            </div>
 
           </form>
           <a class="waves-effect waves-light btn" id="calculate">Calculate</a>
         </div>
       </div>
-      <div class="row">
+      <div class="row hidden res">
         <div class="results center-align">
           <div class="result">
             <p>Total Length</p>
@@ -204,12 +114,22 @@
             <div id="ta"></div>
           </div>
         </div>
+        <div class="center trackcon"><a href="#" id="tracklink">Move to Track</a></div>
+      </div>
+    </div>
+
+    <div class="container con hidden" id="track">
+      <div class="row">
+        <div class="col s12 m8 push-m2 center-align">
+          <h3>Track Statistics</h3>
+          <canvas widht="500" height="500" id="canvas"></canvas>
+          <div class="center trackcon"><a href="#" id="measurelink">Move to Measurements</a></div>
+        </div>
       </div>
     </div>
   </main>
 
 <!-- FOOTER -->
-
 
   <footer class="page-footer">
     © Placeholder for copyright text.
@@ -219,6 +139,6 @@
 <script type="text/javascript" src='../track2.js'></script>
 <script>
   $(".button-collapse").sideNav();
-  $(".results").hide();
+  $(".hidden").hide();
 </script>
 </html>

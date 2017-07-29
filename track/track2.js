@@ -15,7 +15,7 @@ const total_length = (st, cdr, lanes, lane_width, extra) => {
 
 const total_width = (cdr, lanes, lane_width, extra) => {
   // same as the previous ones
-  return (lanes * lane_width) * (2 * cdr) + (2 * extra);
+  return (lanes * lane_width) + (2 * cdr) + (2 * extra);
 }
 
 const find_curve_length = (st) => {
@@ -41,12 +41,13 @@ const click_handler = (e) => {
   const length = parseFloat(document.getElementById("length").value); // length of the staght
   const lane_width = parseFloat(document.getElementById("width").value);
   const extra_space = parseInt(document.getElementById("extra").value) || 0;
-  p(extra_space);
-  // get the type of the field using radio buttons
+  cdr_const = $("#nonstan").prop("checked")?0.20:0.30;
 
 
-  if (!length>0 && !lane_width>0 || length>90 && lane_width>90)
+  if (!length>0 || !lane_width>0 || length>90 || lane_width>90){
+    alert('Enter values properly.');
     return ;
+  }
 
   const rdr = find_rdr(length);
   const cdr = find_cdr(rdr);
@@ -56,8 +57,21 @@ const click_handler = (e) => {
   $("#tl").text(tl+"m");
   $("#tw").text(tw+"m");
   $("#ta").html(ta+"m<sup>2</sup>");
-  $(".results").fadeIn(200);
+  $(".res").fadeIn(400);
 }
 
 $("#calculate").on("click", click_handler);
 
+$("#tracklink").on("click", (e) => {
+  e.preventDefault();
+  $("#input").fadeOut(250, () => {
+    $("#track").fadeIn(1000);
+  });
+});
+
+$("#measurelink").on("click", (e) => {
+  e.preventDefault();
+  $("#track").fadeOut(250, () => {
+    $("#input").fadeIn(1000);
+  });
+});
