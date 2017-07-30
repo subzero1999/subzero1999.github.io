@@ -2,156 +2,413 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <meta name="viewport" content="width=device-width, initial-scale = 1.0,
-    maximum-scale=1.0, user-scalable=no" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Luckiest+Guy" rel="stylesheet">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
-    <title>Track Measurement</title>
-    <style>
-    .container {
-        background-color: #263238;
-        height: 500px;
-        width: 600px;
-        margin-top: 100px;
-        color: white;
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width,initial-scale = 1.0,maximum-scale=1.0,user-scalable=no" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Anton|Fjalla+One|Luckiest+Guy" rel="stylesheet">
+  <title></title>
+  <style>
+    .nav-wrapper {
+      background-color: #263238;
+      overflow-x: scroll;
     }
 
-    .user_input {
-        margin-top: 50px;
+    .tabs .tab a {
+      background-color: #263238;
+      color: #e2e2e2;
+      transition: color 500ms ease-in;
+    }
+
+    .tabs .tab a:hover {
+      color: #26a19a;
+    }
+
+    .tabs .indicator {
+      background-color: #26a69a;
+    }
+
+    .body {
+      margin: 0px;
+      background-color: red;
     }
 
     body {
-        background-color: #546e7a;
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-        background-image: url("track.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        height: 100%;
-        width: 100%;
+      background-color: #546e7a;
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    
+    .card {
+      transition: all 200ms ease-in;
+      transform: scale(1);
+      filter: brightness(0.9);
     }
 
-    .low-opacity {
-        opacity: 0.8;
+    .card:hover {
+      transform: scale(1.1);
+      filter: brightness(1);
     }
-
     main {
-        flex: 1 0 auto;
+      flex: 1 0 auto;
     }
 
-
-    .btn {
-        margin-top: 20px;
-        background-color: #827717;
+    .topic {
+      margin: 0px;
+      padding-top: 20px;
+      color: #26a69a;
     }
 
-    .input-field label {
-        color: #dce775;
-    }
-
-    .input-field input[type=text]:focus+label {
-        color: #dce775;
-    }
-
-    .input-field input[type=text]:focus {
-        border-bottom: 1px solid #dce775;
-        box-shadow: 0 1px 0 0 #dce775;
-    }
-
-
-    .nav-wrapper {
-        background-color: #263238;
+    .container-fluid {
+      /*background-color: #263238;*/
+      margin-top: 100px;
+      color: black;
     }
 
     footer.page-footer {
-        background-color: #263238;
+      background-color: #263238;
+      color: white;
+      text-align: center;
+      font-family: Verdana;
+      padding: 20px;
+      font-size: 10px;
     }
-    </style>
+  </style>
 </head>
 
 <body>
-    <!-- NAVBAR   -->
-    <nav>
-        <div class="nav-wrapper white-text low-opacity">
-            <a href="#" class="brand-logo center" style="font-family:Fjalla One">Track Measurement</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#" class="waves-effect waves-light">Home</a></li>
-                <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Rules and Regulation</a></li>
-                <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Contacts</a></li>
-            </ul>
-        </div>
-    </nav>
-    <!-- NAVBAR -->
-    <!-- MODAL -->
-    <div id="canvasModal" class="modal">
-        <center>
-        <div class="modal-content">
-            <h4>Approximated track model</h4>
-            <p>According to IAAF standards.</p>
-            <canvas id="canvas" width="0" height="0" style="background-color: #fff; color: white;">You need Javascript for this page to work.</canvas>    
-        </div>
-        </center>
-        <div class="modal-footer">
-            <a href="#" class="waves-effect waves-green btn-flat" id="download">Download</a>
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-        </div>
+
+  <!-- NAVBAR   -->
+
+  <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <h5 class="center-align topic">Track & Field Layout</h5>
+      <!-- <h5 class="center-align topic">Construction & Layout of track & field</h6> -->
+      <ul class="side-nav" id="mobile-demo">
+        <li class="tab"><a href="#test1">Home</a></li>
+        <li class="tab"><a href="#test2">About us</a></li>
+        <li class="tab"><a href="#test3">Theory of Calculation</a></li>
+        <li class="tab"><a href="#test4">Educational videos</a></li>
+        <li class="tab"><a href="#test1">Rules and Regulations</a></li>
+        <li class="tab"><a href="#test1">Links</a></li>
+        <li class="tab"><a href="#test1">Feedback</a></li>
+        <li class="tab"><a href="#test1">Contact</a></li>
+      </ul>
     </div>
+    <div class="nav-content hide-on-med-and-down">
+      <ul class="tabs tabs-transparent" style="color:#26a69a">
+        <li class="tab"><a href="#test1">Home</a></li>
+        <li class="tab"><a href="#test2">About us</a></li>
+        <li class="tab"><a href="#test3">Theory of Calculation</a></li>
+        <li class="tab"><a href="#test4">Educational videos</a></li>
+        <li class="tab"><a href="#test1">Rules and Regulations</a></li>
+        <li class="tab"><a href="#test1">Links</a></li>
+        <li class="tab"><a href="#test1">Feedback</a></li>
+        <li class="tab"><a href="#test1">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
 
-    <div id="modal1" class="modal low-opacity">
-        <div class="modal-content">
-            <h4>Modal Header</h4>
-            <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Close</a>
-        </div>
+  <!-- NAVBAR -->
+
+
+  <!-- MODAL -->
+  <div id="modal3" class="modal">
+    <div class="modal-content">
+      <h4>Javline</h4>
+      <p>A bunch of text</p>
     </div>
-    <!-- MODAL -->
-    <!-- MAIN CONTENT -->
-    <main>
-        <div class="container  low-opacity">
-            <div class="row">
-                <div class="col s12 m8 push-m2 center-align">
-                    <h3 style="margin-top:40px;font-family: 'Luckiest Guy', cursive;">Measurements</h3>
-                    <form class="user_input">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="length" type="number" class="validate" min="1" max="1000">
-                                <label for="length">Length of the ground (metres)</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input id="breadth" type="number" class="validate" min="1" max="1000">
-                                <label for="breadth">Breadth of the ground (metres)</label>
-                            </div>
-                        </div>
-                    </form>
-                    <a id="submit"class="waves-effect waves-light btn">Calculate</a>
-                </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+  <div id="modal4" class="modal">
+    <div class="modal-content">
+      <h4>Polevault</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal5" class="modal">
+    <div class="modal-content">
+      <h4>Shotput</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal6" class="modal">
+    <div class="modal-content">
+      <h4>Hammerthrow</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal7" class="modal">
+    <div class="modal-content">
+      <h4>Discussthrow</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal8" class="modal">
+    <div class="modal-content">
+      <h4>Scoresheet</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal9" class="modal">
+    <div class="modal-content">
+      <h4>Position of the offcials</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal10" class="modal">
+    <div class="modal-content">
+      <h4>Technology in track and Field</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal11" class="modal">
+    <div class="modal-content">
+      <h4>Teaching and Coaching</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal12" class="modal">
+    <div class="modal-content">
+      <h4>Fieldevent</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+  <div id="modal13" class="modal">
+    <div class="modal-content">
+      <h4>Longjump & Triplejump</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green   btn-flat">Agree</a>
+    </div>
+  </div>
+
+
+
+  <!-- CONTENT -->
+  <main>
+    <div class="container-fluid center">
+      <div class="row">
+        <div class="col s12 m4 push-m2">
+          <div class="card">
+            <div class="card-image">
+              <a class="waves-effect waves-light  modal-trigger" href="#modal1"><img src="track.jpg" class="responsive-img"></a>
             </div>
+            <div class="card-content">
+              <h5>200m Running</h5>
+            </div>
+          </div>
         </div>
-    </main>
-    <!-- MAIN CONTENT -->
-    <footer class="page-footer low-opacity">
-        © 2014 Copyright Text
-    </footer>
+        <div class="col s12 m4 push-m2">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light" href="400/index.html"><img src="track.jpg" class="responsive-img"></a>
+            </div>
+            <div class="card-content">
+              <h5>400m Running</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal3"> <img src="javline.jpg" class="responsive-img"></a>
+            </div>
+            <div class="card-content">
+              <h5>Javline</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal4"> <img src="polevault.jpg" class="responsive-img"></a>
+            </div>
+            <div class="card-content">
+              <h5>Polevault</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal5"> <img src="shotput1.jpg" class="responsvie-img"></a>
+
+            </div>
+            <div class="card-content">
+              <h5>Shotput</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal6"> <img src="hammerthrow.jpg" class="responsive-img"></a>
+
+            </div>
+            <div class="card-content">
+              <h5>HammerThrow</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal7"> <img src="discussthrow.jpg" class="responsive-img"></a>
+            </div>
+            <div class="card-content">
+              <h5>DiscussThrow</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal8"> <img src="scoresheet.jpg" class="responsive-img"></a>
+
+            </div>
+            <div class="card-content">
+              <h5>Scoresheet</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+              <a class="waves-effect waves-light  modal-trigger" href="#modal9"><img src="position.png" class="responsvie-img"></a>
+
+            </div>
+            <div class="card-content">
+              <h5>Position of Officials</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m3">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal10"><img src="technology.jpg" class="responsive-img"></a>
+
+            </div>
+            <div class="card-content">
+              <h5>Technology in track & Field</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m3 push-m1">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal11"><img src="coaching.png" class="responsive-img"></a>
+
+            </div>
+            <div class="card-content">
+              <h5>Teaching & Coaching</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m3 push-m1">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal12"><img src="fieldevent.jpg" class="responsive-img"></a>
+
+            </div>
+            <div class="card-content">
+              <h5>IIAF Track & Field Events</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m3 push-m1">
+          <div class="card">
+            <div class="card-image">
+
+              <a class="waves-effect waves-light  modal-trigger" href="#modal13"><img src="longjump.jpg" class="responsive-img"></a>
+
+            </div>
+            <div class="card-content">
+              <h5>Long & Triple Jump</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+
+
+  <footer class="page-footer">
+    © Placeholder for copyright text.
+  </footer>
+
 </body>
 <script>
-$(document).ready(function() {
+  $(".button-collapse").sideNav();
+</script>
+<script>
+  $(document).ready(function() {
     // the "href" attribute of .modal-trigger must specify the modal ID that   wants to be triggered
     $('.modal-trigger').leanModal();
-    $("#submit").on("click", clickHandler);
-});
+  });
 </script>
-<script src="track.js"></script>
 </html>

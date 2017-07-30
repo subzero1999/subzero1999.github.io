@@ -1,6 +1,8 @@
 // Convert to ES2015 js and minify after this is done
+// Author: digi0ps
+// Copyright: none
+// For: Track Measurement 
 
-// Author digi0ps
 
 const p = (t) => console.log(t);
 
@@ -121,33 +123,38 @@ const renderStaggers = () => {
 const generatePDF = (e) => {
   e.preventDefault();
   const pdf = new jsPDF();
-  let dataURL;
-  // Add track image 
-  const img = new Image();
-  img.setAttribute('crossOrigin', 'anonymous');
-  img.src = 'track400.jpg';
-  img.addEventListener('load',()=>{
-    const canvas = document.getElementById('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    const context = canvas.getContext('2d');
-    context.drawImage(img, 0, 0);
-    dataURL = canvas.toDataURL();
-  });
   //Text
-    pdf.addImage(dataURL, 'PNG', 0, 80);
-
   pdf.setFontType('bold');
   pdf.text(105, 20, "Track Measurement", null, null, 'center');
   pdf.setFontType('normal');
   pdf.text(105, 30, "Approximated diagram of the track using the latest IAAF standards", null, null, 'center');
-  pdf.text(105, 50, `Total Area: ${ta}`, null, null, 'center');
-  pdf.text(105, 60, `Total Length: ${tl}`, null, null, 'center');
-  pdf.text(105, 70, `Total Width: ${tw}`, null, null, 'center');
-  pdf.text(105, 80, `Running Distance Radius: ${rdr}`, null, null, 'center');
-  pdf.text(105, 90, `Curved Distance Radius: ${cdr}`, null, null, 'center');
-  pdf.save("track.pdf");
+  pdf.addImage(dataURL, 'PNG', 25, 40, null, null);
+  pdf.text(105, 170, `Total Area: ${ta}`, null, null, 'center');
+  pdf.text(105, 180, `Total Length: ${tl}`, null, null, 'center');
+  pdf.text(105, 190, `Total Width: ${tw}`, null, null, 'center');
+  pdf.text(105, 200, `Running Distance Radius: ${rdr}`, null, null, 'center');
+  pdf.text(105, 210, `Curved Distance Radius: ${cdr}`, null, null, 'center');
+  var elem = document.getElementById("staggers");
+  var res = pdf.autoTableHtmlToJson(elem);
+  pdf.autoTable(res.columns, res.data, {startY: 215});
+
+  window.open(pdf.output('datauristring'))
+  //pdf.save("track.pdf");
 }
+
+let dataURL;
+// Add track image 
+var img = new Image();
+img.src = 'track400.jpg';
+img.setAttribute('crossOrigin', 'anonymous');
+img.addEventListener('load',()=>{
+  var canvas = document.createElement('canvas');
+  canvas.width = img.width;
+  canvas.height = img.height;
+  var context = canvas.getContext('2d');
+  context.drawImage(img, 0, 0);
+  dataURL = canvas.toDataURL();
+});
 
 $("#calculate").on("click", click_handler);
 
