@@ -1,3 +1,9 @@
+/*
+CSS for Track 400 page.
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather, Ubuntu');
+
 .nav-wrapper {
   background-color: #263238;
   overflow-x: scroll;
@@ -22,11 +28,18 @@
   background-color: red;
 }
 
+h5 a {
+  color: #2BBBAD;
+  font-family: "Merriweather", sans;
+}
+
 body {
   background-color: #546e7a;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: "Ubuntu", sans-serif;
+
 }
 
 main {
@@ -49,6 +62,8 @@ main {
   margin-top: 70px;
   padding-bottom: 15px;
   background-color: #fcfcfc;
+  box-shadow: -2px 1px 20px -5px #000000;
+  border-radius: 5px;
 }
 
 .results {
@@ -102,6 +117,21 @@ main {
   opacity: 0.8;
 }
 
+#canvas {
+  width: 100%;
+}
+
+form {
+  padding: 20px;
+}
+
+.trackbg {
+  background: url("track400.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 444px;
+  width: auto;
+}
 footer.page-footer {
   background-color: #263238;
   color: white;

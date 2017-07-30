@@ -1,6 +1,12 @@
+// Convert to ES2015 js and minify after this is done
+
+// Author digi0ps
+
 const p = (t) => console.log(t);
 
-let cdr_const = 0.30;
+let cdr_const = 0.30, tl, td, ta, cdr, rdr, lw, straight;
+let rendered = false;
+const l = 633, h = 544;
 
 const total_area = (tl, tw) => tl*tw;
 
@@ -49,24 +55,81 @@ const click_handler = (e) => {
     return ;
   }
 
-  const rdr = find_rdr(length);
-  const cdr = find_cdr(rdr);
-  const tl = total_length(length, cdr, 8, lane_width, extra_space).toFixed(2);
-  const tw = total_width(cdr, 8, lane_width, extra_space).toFixed(2);
-  const ta = total_area(tl, tw).toFixed(2);
+  straight = length;
+  lw = lane_width;
+  rdr = find_rdr(length);
+  cdr = find_cdr(rdr);
+  tl = total_length(length, cdr, 8, lane_width, extra_space).toFixed(2);
+  tw = total_width(cdr, 8, lane_width, extra_space).toFixed(2);
+  ta = total_area(tl, tw).toFixed(2);
+  // Make sures staggers don't rerender
+  rendered = false;
   $("#tl").text(tl+"m");
   $("#tw").text(tw+"m");
   $("#ta").html(ta+"m<sup>2</sup>");
   $(".res").fadeIn(400);
+  $("html, body").animate({
+    scrollTop: $("#tracklink").offset().top
+  }, 200);
 }
+
+const renderCanvas = () => {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  track_image = new Image();
+  track_image.src = "track400.jpg";
+  track_image.onload = () => {
+    ctx.drawImage(track_image, 0, 0);
+  }
+  const dimText = `Total Length: ${tl}m, Total Width: ${tw}m`;
+  const groundText = `Track: 400m, Lanes: ${8}`;
+  ctx.fillText(dimText, l/2-110, h-30);
+  ctx.fillText(groundText, l/2-70, h-10);
+}
+
+const renderStaggers = () => {
+  // lw - lane width
+  // formula - [lw(n-1) - 0.10]*2PI
+  if (rendered)
+    return;
+  let full_staggers = [0], half_staggers =[0];
+  for(n=2;n<=8;n++){
+    full_staggers.push(((lw*(n-1) - 0.10)*2*Math.PI).toFixed(2));
+    half_staggers.push(((lw*(n-1) - 0.10)*Math.PI).toFixed(2));
+  };
+  const stats = `
+    <p>Length of the straight: ${straight}</p>
+    <p>Lane width: ${lw}</p>
+    <p>RDR (Running Distance Radius): ${rdr.toFixed(2)}</p>
+    <p>CDR (Curved Distance Radius): ${cdr.toFixed(2)}</p>
+  `;
+  $("#trackstats").append(stats);
+  for(i=0;i<8;i++){
+    let ele = `
+    <tr>
+      <td class="center">${i+1}</td>
+      <td class="center">${full_staggers[i]}</td>
+      <td class="center">${half_staggers[i]}</td>
+    </tr>
+    `;
+    $("#staggers").append(ele);
+  }
+  $("#staggers").addClass("centered");
+  rendered = true;
+}
+
 
 $("#calculate").on("click", click_handler);
 
 $("#tracklink").on("click", (e) => {
   e.preventDefault();
+  renderStaggers();
   $("#input").fadeOut(250, () => {
     $("#track").fadeIn(1000);
   });
+  $("html, body").animate({
+    scrollTop: 100
+  }, 200);
 });
 
 $("#measurelink").on("click", (e) => {
@@ -75,3 +138,8 @@ $("#measurelink").on("click", (e) => {
     $("#input").fadeIn(1000);
   });
 });
+
+/*
+renderCanvas();
+calcStaggers(1.22);
+*/
