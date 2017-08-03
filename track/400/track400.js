@@ -6,7 +6,7 @@
 
 const p = (t) => console.log(t);
 
-let cdr_const = 0.30, tl, td, ta, cdr, rdr, lw, straight;
+let cdr_const = 0.30, tl, tw, ta, cdr, rdr, lw, straight;
 let rendered = false;
 const l = 633, h = 544;
 
@@ -95,7 +95,7 @@ const renderStaggers = () => {
   if (rendered)
     return;
   let full_staggers = [0], half_staggers =[0];
-  for(n=2;n<=8;n++){
+  for(let n=2;n<=8;n++){
     full_staggers.push(((lw*(n-1) - 0.10)*2*Math.PI).toFixed(2));
     half_staggers.push(((lw*(n-1) - 0.10)*Math.PI).toFixed(2));
   };
@@ -106,7 +106,7 @@ const renderStaggers = () => {
     <p>CDR (Curved Distance Radius): ${cdr.toFixed(2)}</p>
   `;
   $("#trackstats").append(stats);
-  for(i=0;i<8;i++){
+  for(let i=0;i<8;i++){
     let ele = `
     <tr>
       <td class="center">${i+1}</td>
@@ -132,8 +132,8 @@ const generatePDF = (e) => {
   pdf.text(105, 170, `Total Area: ${ta}`, null, null, 'center');
   pdf.text(105, 180, `Total Length: ${tl}`, null, null, 'center');
   pdf.text(105, 190, `Total Width: ${tw}`, null, null, 'center');
-  pdf.text(105, 200, `Running Distance Radius: ${rdr}`, null, null, 'center');
-  pdf.text(105, 210, `Curved Distance Radius: ${cdr}`, null, null, 'center');
+  pdf.text(105, 200, `Running Distance Radius: ${rdr.toFixed(2)}`, null, null, 'center');
+  pdf.text(105, 210, `Curved Distance Radius: ${cdr.toFixed(2)}`, null, null, 'center');
   var elem = document.getElementById("staggers");
   var res = pdf.autoTableHtmlToJson(elem);
   pdf.autoTable(res.columns, res.data, {startY: 215});
@@ -177,7 +177,3 @@ $("#measurelink").on("click", (e) => {
 });
 
 $("#downloadlink").on("click", generatePDF);
-/*
-renderCanvas();
-calcStaggers(1.22);
-*/
