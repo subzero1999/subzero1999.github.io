@@ -73,7 +73,7 @@
             <div class="row">
               <div class="input-field col s12">
                 <input id="length" type="number" class="validate">
-                <label for="length">Length</label>
+                <label for="length">Length of the length</label>
               </div>
             </div>
             <div class="row">
@@ -130,7 +130,7 @@
             <image src="track400.jpg" class="responsive-img">
           </div>
           <div class="row">
-          <div class="col s12 m8 push-m2 center-align">
+          <div class="col s12 m12 center-align">
           <div id="trackstats"></div>
           <table
             class="table"
@@ -140,6 +140,10 @@
               <th>Lane</th>
               <th>Full Stagger</th>
               <th>Half Stagger</th>
+              <th>Diagonal Excess</th>
+              <th>Half Stagger+Diagonal Excess</th>
+              <th>1½ Stagger</th>
+              <th>1½ Stagger+Diagonal Excess</th>
             </thead>
           </table>
           </div>
@@ -163,7 +167,7 @@
   </footer>
 
 </body>
-<script type="text/javascript" src='track400.min.js'></script>
+<script type="text/javascript" src='track400.js'></script>
 <script>
   $(".button-collapse").sideNav();
   $(".hidden").hide();

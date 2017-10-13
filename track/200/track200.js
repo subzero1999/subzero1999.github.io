@@ -94,10 +94,9 @@ const renderStaggers = () => {
   // formula - [lw(n-1) - 0.10]*2PI
   if (rendered)
     return;
-  let full_staggers = [0], half_staggers =[0];
+  let full_staggers = [0];
   for(let n=2;n<=8;n++){
     full_staggers.push(((lw*(n-1) - 0.10)*2*Math.PI).toFixed(2));
-    half_staggers.push(((lw*(n-1) - 0.10)*Math.PI).toFixed(2));
   };
   const stats = `
     <p>Length of the straight: ${straight}</p>

@@ -6,7 +6,7 @@
 
 const p = (t) => console.log(t);
 
-let cdr_const = 0.30, tl, tw, ta, cdr, rdr, lw, straight;
+let cdr_const = 0.30, tl, tw, ta, cdr, rdr, lw, straight, extra;
 let rendered = false;
 const l = 633, h = 544;
 
@@ -18,7 +18,7 @@ const total_length = (st, cdr, lanes, lane_width, extra) => {
   // lanes - number of lanes
   // lane_width - width of thelane
   // extra - extra space
-  return st + (2 * cdr) + (lanes * lane_width) + (2 * extra);
+  return st + (2 * cdr) + (2 * (lanes * lane_width)) + (2 * extra);
 }
 
 const total_width = (cdr, lanes, lane_width, extra) => {
@@ -59,6 +59,7 @@ const click_handler = (e) => {
 
   straight = length;
   lw = lane_width;
+  extra = extra_space;
   rdr = find_rdr(length);
   cdr = find_cdr(rdr);
   tl = total_length(length, cdr, 8, lane_width, extra_space).toFixed(2);
@@ -89,16 +90,28 @@ const renderCanvas = () => {
   ctx.fillText(groundText, l/2-70, h-10);
 }
 
-const renderStaggers = () => {
+const renderLaneTable = () => {
+  // render lane table for every lane and display it on the sitefs
+}
+
+const renderStaggerTable = () => {
   // lw - lane width
   // formula - [lw(n-1) - 0.10]*2PI
   if (rendered)
     return;
-  let full_staggers = [0], half_staggers =[0];
+  let full_staggers = [0], diagonal_excess = [];
   for(let n=2;n<=8;n++){
-    full_staggers.push(((lw*(n-1) - 0.10)*2*Math.PI).toFixed(2));
-    half_staggers.push(((lw*(n-1) - 0.10)*Math.PI).toFixed(2));
+    let full_stag = ((lw*(n-1) - 0.10)*2*Math.PI).toFixed(2);
+    full_staggers.push(full_stag);
   };
+  for(let n=1;n<=8;n++){
+    let l = total_length(length, cdr, n, lw, extra).toFixed(2)/2;
+    let w = lw * n;
+    let de = Math.sqrt(l*l + w*w);
+    de = de - l;
+    diagonal_excess.push(de.toFixed(2));
+  }
+
   const stats = `
     <p>Length of the straight: ${straight}</p>
     <p>Lane width: ${lw}</p>
@@ -107,11 +120,21 @@ const renderStaggers = () => {
   `;
   $("#trackstats").append(stats);
   for(let i=0;i<8;i++){
+    let onehalf = (full_staggers[i]*1.5).toFixed(2);
+    onehalf = parseFloat(onehalf);
+    let halfde = full_staggers[i]*0.5 + parseFloat(diagonal_excess[i]);
+    let onehalfde = onehalf + parseFloat(diagonal_excess[i]);
+    halfde = halfde.toFixed(2);
+    onehalfde = onehalfde.toFixed(2);
     let ele = `
     <tr>
       <td class="center">${i+1}</td>
       <td class="center">${full_staggers[i]}</td>
-      <td class="center">${half_staggers[i]}</td>
+      <td class="center">${full_staggers[i]*0.5}</td>
+      <td class="center">${diagonal_excess[i]}</td>
+      <td class="center">${halfde}</td>
+      <td class="center">${onehalf}</td>
+      <td class="center">${onehalfde}</td>
     </tr>
     `;
     $("#staggers").append(ele);
@@ -160,7 +183,7 @@ $("#calculate").on("click", click_handler);
 
 $("#tracklink").on("click", (e) => {
   e.preventDefault();
-  renderStaggers();
+  renderStaggerTable();
   $("#input").fadeOut(250, () => {
     $("#track").fadeIn(1000);
   });
