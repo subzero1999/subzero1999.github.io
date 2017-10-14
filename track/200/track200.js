@@ -61,6 +61,7 @@ const click_handler = (e) => {
   lw = lane_width;
   rdr = find_rdr(length);
   cdr = find_cdr(rdr);
+  extra = extra_space;
   tl = total_length(length, cdr, 8, lane_width, extra_space).toFixed(2);
   tw = total_width(cdr, 8, lane_width, extra_space).toFixed(2);
   ta = total_area(tl, tw).toFixed(2);
@@ -89,28 +90,57 @@ const renderCanvas = () => {
   ctx.fillText(groundText, l/2-70, h-10);
 }
 
-const renderStaggers = () => {
+const renderStaggersTable = () => {
   // lw - lane width
   // formula - [lw(n-1) - 0.10]*2PI
   if (rendered)
     return;
-  let full_staggers = [0];
+  let full_staggers = [0], diagonal_excess = [];
   for(let n=2;n<=8;n++){
     full_staggers.push(((lw*(n-1) - 0.10)*2*Math.PI).toFixed(2));
   };
+  for(let n=1;n<=8;n++){
+    let l = total_length(length, cdr, n, lw, extra).toFixed(2)/2;
+    let w = lw * n;
+    let de = Math.sqrt(l*l + w*w);
+    de = de - l;
+    diagonal_excess.push(de.toFixed(2));
+  }
   const stats = `
-    <p>Length of the straight: ${straight}</p>
-    <p>Lane width: ${lw}</p>
-    <p>RDR (Running Distance Radius): ${rdr.toFixed(2)}</p>
-    <p>CDR (Curved Distance Radius): ${cdr.toFixed(2)}</p>
+    <div class='col s12 m8 push-m2'>
+    <table class='table' align='center' id='stats-table'>
+    <thead>
+    <th>Length of the straight</th>
+    <th>Lane Width</th>
+    <th>RDR</th>
+    <th>CDR</th>
+    </thead>
+    <tr>
+    <td>${straight}</td>
+    <td>${lw}</p>
+    <td>${rdr.toFixed(2)}</td>
+    <td>${cdr.toFixed(2)}</td>
+    </tr>
+    </table>
+    </div>
   `;
   $("#trackstats").append(stats);
   for(let i=0;i<8;i++){
+    let onehalf = (full_staggers[i]*1.5).toFixed(2);
+    onehalf = parseFloat(onehalf);
+    let halfde = full_staggers[i]*0.5 + parseFloat(diagonal_excess[i]);
+    let onehalfde = onehalf + parseFloat(diagonal_excess[i]);
+    halfde = halfde.toFixed(2);
+    onehalfde = onehalfde.toFixed(2);
     let ele = `
     <tr>
       <td class="center">${i+1}</td>
       <td class="center">${full_staggers[i]}</td>
-      <td class="center">${half_staggers[i]}</td>
+      <td class="center">${full_staggers[i]*0.5}</td>
+      <td class="center">${diagonal_excess[i]}</td>
+      <td class="center">${halfde}</td>
+      <td class="center">${onehalf}</td>
+      <td class="center">${onehalfde}</td>
     </tr>
     `;
     $("#staggers").append(ele);
@@ -137,8 +167,8 @@ const generatePDF = (e) => {
   var res = pdf.autoTableHtmlToJson(elem);
   pdf.autoTable(res.columns, res.data, {startY: 205});
 
-  window.open(pdf.output('datauristring'))
-  //pdf.save("track.pdf");
+  // window.open(pdf.output('datauristring'))
+  pdf.save("track.pdf");
 }
 
 let dataURL;
@@ -159,7 +189,7 @@ $("#calculate").on("click", click_handler);
 
 $("#tracklink").on("click", (e) => {
   e.preventDefault();
-  renderStaggers();
+  renderStaggersTable();
   $("#input").fadeOut(250, () => {
     $("#track").fadeIn(1000);
   });

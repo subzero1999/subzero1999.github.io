@@ -113,10 +113,22 @@ const renderStaggerTable = () => {
   }
 
   const stats = `
-    <p>Length of the straight: ${straight}</p>
-    <p>Lane width: ${lw}</p>
-    <p>RDR (Running Distance Radius): ${rdr.toFixed(2)}</p>
-    <p>CDR (Curved Distance Radius): ${cdr.toFixed(2)}</p>
+    <div class='col s12 m8 push-m2'>
+    <table class='table' align='center' id='stats-table'>
+    <thead>
+    <th>Length of the straight</th>
+    <th>Lane Width</th>
+    <th>RDR</th>
+    <th>CDR</th>
+    </thead>
+    <tr>
+    <td>${straight}</td>
+    <td>${lw}</p>
+    <td>${rdr.toFixed(2)}</td>
+    <td>${cdr.toFixed(2)}</td>
+    </tr>
+    </table>
+    </div>
   `;
   $("#trackstats").append(stats);
   for(let i=0;i<8;i++){
@@ -161,8 +173,8 @@ const generatePDF = (e) => {
   var res = pdf.autoTableHtmlToJson(elem);
   pdf.autoTable(res.columns, res.data, {startY: 215});
 
-  window.open(pdf.output('datauristring'))
-  //pdf.save("track.pdf");
+  // window.open(pdf.output('datauristring'));
+  pdf.save("track.pdf");
 }
 
 let dataURL;
