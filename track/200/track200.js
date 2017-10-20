@@ -4,9 +4,12 @@
 // For: Track Measurement 
 
 
+// PDF FILE NAME:
+const PDFNAME = "track200.pdf";
+
 const p = (t) => console.log(t);
 
-let cdr_const = 0.20, tl, tw, ta, cdr, rdr, lw, straight;
+let cdr_const = 0.20, tl, tw, ta, cdr, rdr, lw, straight, extra;
 let rendered = false;
 const l = 633, h = 544;
 
@@ -157,18 +160,24 @@ const generatePDF = (e) => {
   pdf.text(105, 20, "Track Measurement", null, null, 'center');
   pdf.setFontType('normal');
   pdf.text(105, 30, "Approximated diagram of the track using the latest IAAF standards", null, null, 'center');
-  pdf.addImage(dataURL, 'PNG', 25, 40, null, null);
-  pdf.text(105, 160, `Total Area: ${ta}`, null, null, 'center');
-  pdf.text(105, 170, `Total Length: ${tl}`, null, null, 'center');
-  pdf.text(105, 180, `Total Width: ${tw}`, null, null, 'center');
-  pdf.text(105, 190, `Running Distance Radius: ${rdr.toFixed(2)}`, null, null, 'center');
-  pdf.text(105, 200, `Curved Distance Radius: ${cdr.toFixed(2)}`, null, null, 'center');
-  var elem = document.getElementById("staggers");
-  var res = pdf.autoTableHtmlToJson(elem);
-  pdf.autoTable(res.columns, res.data, {startY: 205});
+
+  let pdfwidth = pdf.internal.pageSize.width;    
+  let pdfheight = pdf.internal.pageSize.height/2 - 20;
+  pdf.addImage(dataURL, 'PNG', 0, 40, pdfwidth, pdfheight);
+  pdf.text(105, 170, `Total Area: ${ta}`, null, null, 'center');
+  pdf.text(105, 180, `Total Length: ${tl}`, null, null, 'center');
+  pdf.text(105, 190, `Total Width: ${tw}`, null, null, 'center');
+  pdf.text(105, 200, `Running Distance Radius: ${rdr.toFixed(2)}`, null, null, 'center');
+  pdf.text(105, 210, `Curved Distance Radius: ${cdr.toFixed(2)}`, null, null, 'center');
+  var stats = document.getElementById('stats-table');
+  var table1 = pdf.autoTableHtmlToJson(stats);
+  var staggers = document.getElementById("staggers");
+  var table2 = pdf.autoTableHtmlToJson(staggers);
+  pdf.autoTable(table1.columns, table1.data, {startY: 215});
+  pdf.autoTable(table2.columns, table2.data, {startY: 245});
 
   // window.open(pdf.output('datauristring'))
-  pdf.save("track.pdf");
+  pdf.save(PDFNAME);
 }
 
 let dataURL;
